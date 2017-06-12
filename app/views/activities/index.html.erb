@@ -21,7 +21,7 @@
         <td><%= activity.amount %></td>
         <td><%= activity.months %></td>
         <td><%= activity.repeat_yearly %></td>
-        <td><%= activity.category %></td>
+        <td><%= Category.find(activity.category).name %></td>
         <td><%= link_to 'Show', activity %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
         <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :category_id %>
-    <%= f.text_field :category_id %>
+     <%= f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] } %>
   </div>
 
   <div class="actions">
