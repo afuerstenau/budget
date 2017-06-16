@@ -9,7 +9,7 @@
 	<% @sums.each do |category_id, sum| %>
 	  <tr>
 	    <td><%= Category.find(category_id).name %></td>
-	    <td><%= sum %></td>
+	    <td style="text-align: right;"><%= number_to_currency(sum) %></td>
 	  </tr>
 	<% end %>
 </p>
