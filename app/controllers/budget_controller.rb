@@ -1,5 +1,6 @@
 class BudgetController < ApplicationController
   @sums
+  @month
   
   def index
     @activities = Activity.all
@@ -14,7 +15,7 @@ class BudgetController < ApplicationController
   end
   
   def show
-    month = params[:id]
+    @month = params[:id]
     
     @activities = Activity.all
     @categories = Category.all
@@ -23,7 +24,7 @@ class BudgetController < ApplicationController
       @sums[category.id] = 0
     end
     @activities.each do |activity|
-      if activity.months.include? month 
+      if activity.months.include? @month 
         @sums[activity.category_id] += activity.amount
       end
     
