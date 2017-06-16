@@ -16,6 +16,7 @@ class BudgetController < ApplicationController
   
   def show
     @month = params[:id]
+    @monthname = date = Date.new(2017, Integer(@month), 01) 
     
     @activities = Activity.all
     @categories = Category.all
