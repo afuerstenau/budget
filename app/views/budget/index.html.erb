@@ -1,15 +1,46 @@
-<h1>Budget für <%= l(@monthname, format: "%B") %></h1>
-<p>
+<h1 style="text-align:center;">Budget für <%= l(@monthname, format: "%B") %></h1>
+	<table>
+		<tr><td>
 	<table>
 	  <tr>
 	    <th>Kategorie</th>
 	    <th>Betrag</th>
 	  </tr>
 
-	<% @sums.each do |category_id, sum| %>
+	<% @incomes.each do |category_id, amount| %>
 	  <tr>
 	    <td><%= Category.find(category_id).name %></td>
-	    <td style="text-align: right;"><%= number_to_currency(sum) %></td>
+	    <td style="text-align: right;"><%= number_to_currency(amount) %></td>
 	  </tr>
 	<% end %>
-</p>
+	
+	<tr>
+		<hr>
+		<td>Gesamt:</td>
+		<td style="text-align: right;"><%= number_to_currency(@total_incomes) %></td>
+	</tr>
+</table>
+</td>
+<td>
+	<table>
+	  <tr>
+	    <th>Kategorie</th>
+	    <th>Betrag</th>
+	  </tr>
+
+	<% @expenses.each do |category_id, expense| %>
+	  <tr>
+	    <td><%= Category.find(category_id).name %></td>
+	    <td style="text-align: right;"><%= number_to_currency(expense) %></td>
+	  </tr>
+	<% end %>
+	
+	<tr>
+		<hr>
+		<td>Gesamt:</td>
+		<td style="text-align: right;"><%= number_to_currency(@total_expenses) %></td>
+	</tr>
+</table>
+</td>
+</tr>
+</table>
