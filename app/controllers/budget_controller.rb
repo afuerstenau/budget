@@ -23,9 +23,11 @@ class BudgetController < ApplicationController
     @expenses = Hash.new
     @incomes = Hash.new
     @categories.each do |category|
-      @expenses[category.id] = 0
-      @incomes[category.id] = 0
+      @expenses[category.id] = 0 unless category.income
+      @incomes[category.id] = 0 unless category.expense
     end
+    print("category id expenses: #{@expenses}")
+    print("category id incomes: #{@incomes}")
     @total_expenses = 0
     @total_incomes = 0
     @activities.each do |activity|
@@ -34,6 +36,7 @@ class BudgetController < ApplicationController
           @expenses[activity.category_id] += activity.amount
           @total_expenses += activity.amount
         else
+          print("category id: #{activity.category_id} , amount: #{activity.amount}")
           @incomes[activity.category_id] += activity.amount
           @total_incomes += activity.amount
         end
