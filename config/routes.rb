@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  #get 'budget/index'
 
   resources :activities
   resources :categories
