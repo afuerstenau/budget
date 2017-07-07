@@ -3,19 +3,12 @@ class BudgetController < ApplicationController
   @month
   
   def index
-    @activities = Activity.all
-    @categories = Category.all
-    @sums = Hash.new
-    @categories.each do |category|
-      @sums[category.id] = 0
-    end
-    @activities.each do |activity|
-      @sums[activity.category_id] += activity.amount
-    end
+   @month = Date.today.month.to_s
+   show()
   end
   
   def show
-    @month = params[:id]
+    @month = params[:id] unless params[:id].nil?
     @monthname = date = Date.new(2017, Integer(@month), 01) 
     
     @activities = Activity.all
@@ -26,8 +19,6 @@ class BudgetController < ApplicationController
       @expenses[category.id] = 0 unless category.income
       @incomes[category.id] = 0 unless category.expense
     end
-    print("category id expenses: #{@expenses}")
-    print("category id incomes: #{@incomes}")
     @total_expenses = 0
     @total_incomes = 0
     @activities.each do |activity|
@@ -36,7 +27,6 @@ class BudgetController < ApplicationController
           @expenses[activity.category_id] += activity.amount
           @total_expenses += activity.amount
         else
-          print("category id: #{activity.category_id} , amount: #{activity.amount}")
           @incomes[activity.category_id] += activity.amount
           @total_incomes += activity.amount
         end
