@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707072711) do
+ActiveRecord::Schema.define(version: 20170707122028) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 20170707072711) do
     t.datetime "updated_at", null: false
     t.boolean  "expense"
     t.boolean  "income"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "moneymoney_id"
+    t.date     "occurance_date"
+    t.date     "value_date"
+    t.integer  "category_id"
+    t.string   "name"
+    t.string   "purpose"
+    t.string   "account"
+    t.string   "bank"
+    t.decimal  "amount"
+    t.string   "currency"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|

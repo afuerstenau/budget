@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :transactions do
+    collection { post :import}
+  end
+  
   get 'admin' => 'admin#index'
 
   controller :sessions do
