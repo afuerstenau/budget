@@ -1,0 +1,1 @@
+cp moneymoney_csv_exporter.lua ~/Library/Containers/com.moneymoney-app.retail/Data/Library/Application\ Support/MoneyMoney/Extensions/moneymoney_csv_exporter.lua

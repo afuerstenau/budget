@@ -1,7 +1,7 @@
 Exporter{version       = 1.00,
-         format        = "Custom CSV file",
+         format        = "Exporter for Budget",
          fileExtension = "csv",
-         description   = "Export transactions as custom CSV file"}
+         description   = "to be used for import files into budget"}
 
 local function csvField (str)
   -- Helper function for quoting separator character and escaping double quotes.
@@ -16,20 +16,21 @@ end
 
 function WriteHeader (account, startDate, endDate, transactionCount)
   -- Write CSV header.
-  assert(io.write("Date;Value date;Category;Name;Purpose;Account;Bank;Amount;Currency\n"))
+  assert(io.write("moneymoney_id;occurance_date;value_date;category;name;purpose;account;bank;amount;currency\n"))
 end
 
 function WriteTransactions (account, transactions)
   -- Write one line per transaction.
   for _,transaction in ipairs(transactions) do
-    assert(io.write(csvField(MM.localizeDate(transaction.bookingDate)) .. ";" ..
-                    csvField(MM.localizeDate(transaction.valueDate)) .. ";" ..
+    assert(io.write(csvField(transaction.id) .. ";" ..
+					csvField(MM.localizeDate("yyyy-MM-dd", transaction.bookingDate)) .. ";" ..
+                    csvField(MM.localizeDate("yyyy-MM-dd", transaction.valueDate)) .. ";" ..
                     csvField(transaction.category) .. ";" ..
                     csvField(transaction.name) .. ";" ..
                     csvField(transaction.purpose) .. ";" ..
                     csvField(transaction.accountNumber) .. ";" ..
                     csvField(transaction.bankCode) .. ";" ..
-                    csvField(MM.localizeNumber("0.00", transaction.amount)) .. ";" ..
+                    csvField(transaction.amount) .. ";" ..
                     csvField(transaction.currency) .. "\n"))
   end
 end
