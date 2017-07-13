@@ -1,38 +1,42 @@
 <h1 style="text-align:center;">Budget für <%= l(@monthname, format: "%B") %></h1>
 	<table>
-		<tr><th>Einnahmen</th><th>Ausgaben</th></tr>
+		<tr><th>Geplant</th><th>Tatsächlich</th></tr>
 		<tr><td style="width:50%;vertical-align:top">
 			
 	<table style="width:100%">
 
-	<% @incomes.each do |category_id, amount| %>
+	<% @categories.each do |category| %>
 	  <tr>
-	    <td><%= Category.find(category_id).name %></td>
-	    <td style="text-align: right;"><%= number_to_currency(amount) %></td>
+	    <td><%= category.name %></td>
+	    <td style="text-align: right;"><%= number_to_currency(@planned_incomes[category.id]) %></td>
+		<td style="text-align: right;"><%= number_to_currency(@planned_expenses[category.id]) %></td>
 	  </tr>
 	<% end %>
 	
 	<tr style="font-weight: bold;">
 		<hr>
 		<td>Gesamt:</td>
-		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_incomes) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_incomes) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_expenses) %></td>
 	</tr>
 </table>
 </td>
 <td style="width:50%;vertical-align:top">
 	<table  style="width:100%">
 
-	<% @expenses.each do |category_id, expense| %>
+	<% @categories.each do |category_id| %>
 	  <tr>
 	    <td><%= Category.find(category_id).name %></td>
-	    <td style="text-align: right;"><%= number_to_currency(expense) %></td>
+    <td style="text-align: right;"><%= number_to_currency(@planned_incomes[category_id]) %></td>
+	<td style="text-align: right;"><%= number_to_currency(@planned_expenses[category_id]) %></td>
 	  </tr>
 	<% end %>
 	
 	<tr style="font-weight: bold;">
 		<hr>
 		<td>Gesamt:</td>
-		<td style="text-align: right;"><%= number_to_currency(@total_expenses) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_incomes) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_expenses) %></td>
 	</tr>
 </table>
 </td>
