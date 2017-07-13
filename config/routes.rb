@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :categories
   get '/budget/:id', to: 'budget#show'
   get '/budget/show_complete/:id', to: 'budget#show_complete'
-  get '/budget/:id/:category_id', to: 'budget#show_by_category'
+  get '/budget/:id/:category_id', to: 'budget#show_by_category', as: 'budget_show_by_category'
   
   get '/expenses/:id', to: 'expenses#show'
   
