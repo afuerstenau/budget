@@ -7,9 +7,7 @@ class Transaction < ApplicationRecord
       row_as_hash = row.to_hash
       row_as_hash = replace_category_name_with_category_id (row_as_hash)
       row_as_hash.delete("category")
-      #print "moneymoney_cat #{row_as_hash['moneymoney_id']}"
       transaction = Transaction.find_by moneymoney_id: row_as_hash['moneymoney_id']
-      #print ("found that transaction: #{transaction}")
       if transaction == nil then
         Transaction.create! row_as_hash
       else
