@@ -22,6 +22,7 @@ class ExpensesController < ApplicationController
     @total_expenses = 0
     @total_incomes = 0
     @transactions.each do |transaction|
+      if transaction.category_id != nil
         selected_category = @categories.find(transaction.category_id)
         if selected_category.expense
           @expenses[transaction.category_id] += transaction.amount
@@ -31,6 +32,7 @@ class ExpensesController < ApplicationController
           @incomes[transaction.category_id] += transaction.amount
           @total_incomes += transaction.amount
         end
+      end
     end
     render :index
   end
