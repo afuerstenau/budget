@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @plannedtransaction.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @plannedtransaction.amount %>
+</p>
+
+<p>
+  <strong>Months:</strong>
+  <%= @plannedtransaction.months %>
+</p>
+
+<p>
+  <strong>Repeat yearly:</strong>
+  <%= @plannedtransaction.repeat_yearly %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @plannedtransaction.category %>
+</p>
+
+<%= link_to 'Edit', edit_plannedtransaction_path(@plannedtransaction) %> |
+<%= link_to 'Back', plannedtransactions_path %>

@@ -1,0 +1,42 @@
+<%= form_for(plannedtransaction) do |f| %>
+  <% if plannedtransaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plannedtransaction.errors.count, "error") %> prohibited this plannedtransaction from being saved:</h2>
+
+      <ul>
+      <% plannedtransaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :months %>
+    <%= f.text_field :months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :repeat_yearly %>
+    <%= f.check_box :repeat_yearly %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category_id %>
+     <%= f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
