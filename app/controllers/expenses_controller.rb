@@ -9,7 +9,8 @@ class ExpensesController < ApplicationController
     @month = params[:id] unless params[:id].nil?
     @monthname = date = Date.new(2017, Integer(@month), 01) 
     
-    @transactions = Transaction.all
+    @transactions = Transaction.where("value_date between :first_day_of_the_month and :last_day_of_the_month", {first_day_of_the_month: @monthname.at_beginning_of_month, last_day_of_the_month: @monthname.at_end_of_month})
+    print " # of transactions:#{@transactions.count}"
     @categories = Category.all
     print "categories: #{@categories}"
     @expenses = Hash.new
