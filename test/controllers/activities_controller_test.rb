@@ -2,47 +2,47 @@ require 'test_helper'
 
 class ActivitiesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @activity = activities(:one)
+    @plannedtransaction = plannedtransaction(:one)
   end
 
   test "should get index" do
-    get activities_url
+    get plannedtransaction_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_activity_url
+    get new_plannedtransaction_url
     assert_response :success
   end
 
-  test "should create activity" do
+  test "should create plannedtransaction" do
     assert_difference('Activity.count') do
-      post activities_url, params: { activity: { amount: @activity.amount, category_id: @activity.category_id, months: @activity.months, name: @activity.name, repeat_yearly: @activity.repeat_yearly } }
+      post plannedtransaction_url, params: { plannedtransaction: { amount: @plannedtransaction.amount, category_id: @plannedtransaction.category_id, months: @plannedtransaction.months, name: @plannedtransaction.name, repeat_yearly: @plannedtransaction.repeat_yearly } }
     end
 
-    assert_redirected_to activity_url(Activity.last)
+    assert_redirected_to plannedtransaction_url(Activity.last)
   end
 
-  test "should show activity" do
-    get activity_url(@activity)
+  test "should show plannedtransaction" do
+    get plannedtransaction_url(@plannedtransaction)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_activity_url(@activity)
+    get edit_plannedtransaction_url(@plannedtransaction)
     assert_response :success
   end
 
-  test "should update activity" do
-    patch activity_url(@activity), params: { activity: { amount: @activity.amount, category_id: @activity.category_id, months: @activity.months, name: @activity.name, repeat_yearly: @activity.repeat_yearly } }
-    assert_redirected_to activity_url(@activity)
+  test "should update plannedtransaction" do
+    patch plannedtransaction_url(@plannedtransaction), params: { plannedtransaction: { amount: @plannedtransaction.amount, category_id: @plannedtransaction.category_id, months: @plannedtransaction.months, name: @plannedtransaction.name, repeat_yearly: @plannedtransaction.repeat_yearly } }
+    assert_redirected_to plannedtransaction_url(@plannedtransaction)
   end
 
-  test "should destroy activity" do
+  test "should destroy plannedtransaction" do
     assert_difference('Activity.count', -1) do
-      delete activity_url(@activity)
+      delete plannedtransaction_url(@plannedtransaction)
     end
 
-    assert_redirected_to activities_url
+    assert_redirected_to plannedtransaction_url
   end
 end

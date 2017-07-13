@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707122028) do
-
-  create_table "activities", force: :cascade do |t|
-    t.string   "name"
-    t.decimal  "amount",        precision: 8, scale: 2
-    t.string   "months"
-    t.boolean  "repeat_yearly"
-    t.integer  "category_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.index ["category_id"], name: "index_activities_on_category_id"
-  end
+ActiveRecord::Schema.define(version: 20170713073206) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +18,17 @@ ActiveRecord::Schema.define(version: 20170707122028) do
     t.datetime "updated_at", null: false
     t.boolean  "expense"
     t.boolean  "income"
+  end
+
+  create_table "plannedtransactions", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "amount",        precision: 8, scale: 2
+    t.string   "months"
+    t.boolean  "repeat_yearly"
+    t.integer  "category_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.index ["category_id"], name: "index_plannedtransactions_on_category_id"
   end
 
   create_table "transactions", force: :cascade do |t|

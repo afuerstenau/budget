@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :activities
+  resources :plannedtransactions
   resources :categories
   get '/budget/:id', to: 'budget#show'
   get '/budget/show_complete/:id', to: 'budget#show_complete'
