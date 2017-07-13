@@ -1,2 +1,40 @@
-<h1>Expenses#index</h1>
-<p>Find me in app/views/expenses/index.html.erb</p>
+<h1 style="text-align:center;">Transactions for <%= l(@monthname, format: "%B") %></h1>
+	<table>
+		<tr><th>Einnahmen</th><th>Ausgaben</th></tr>
+		<tr><td style="width:50%;vertical-align:top">
+			
+	<table style="width:100%">
+
+	<% @incomes.each do |category_id, amount| %>
+	  <tr>
+	    <td><%= Category.find(category_id).name %></td>
+	    <td style="text-align: right;"><%= number_to_currency(amount) %></td>
+	  </tr>
+	<% end %>
+	
+	<tr style="font-weight: bold;">
+		<hr>
+		<td>Gesamt:</td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_incomes) %></td>
+	</tr>
+</table>
+</td>
+<td style="width:50%;vertical-align:top">
+	<table  style="width:100%">
+
+	<% @expenses.each do |category_id, expense| %>
+	  <tr>
+	    <td><%= Category.find(category_id).name %></td>
+	    <td style="text-align: right;"><%= number_to_currency(expense) %></td>
+	  </tr>
+	<% end %>
+	
+	<tr style="font-weight: bold;">
+		<hr>
+		<td>Gesamt:</td>
+		<td style="text-align: right;"><%= number_to_currency(@total_expenses) %></td>
+	</tr>
+</table>
+</td>
+</tr>
+</table>
