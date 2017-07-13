@@ -39,6 +39,33 @@ class BudgetController < ApplicationController
       end
     end
     
+    @expenses = Hash.new
+    @incomes = Hash.new
+    @categories.each do |category|
+      @expenses[category.id] = 0
+      @incomes[category.id] = 0
+    end
+    @total_expenses = 0
+    @total_incomes = 0
+    @transactions = Transaction.where("value_date between :first_day_of_the_month and :last_day_of_the_month", {first_day_of_the_month: @monthname.at_beginning_of_month, last_day_of_the_month: @monthname.at_end_of_month})
+    @transactions.each do |transaction|
+      
+        #print "expense? #{@categories[plannedtransaction.category_id].name}/ #{@categories[plannedtransaction.category_id].expense}\n"
+        #print "planned_transaction Name:#{plannedtransaction.name} Amount:#{plannedtransaction.amount} Category:#{plannedtransaction.category_id} \n"
+        if (transaction.category_id != nil)
+        selected_category = @categories.find(transaction.category_id)
+        print "category ID:#{selected_category.id} Name:#{selected_category.name} Expense:#{selected_category.expense}\n"
+        if selected_category.expense
+          @expenses[transaction.category_id] += transaction.amount
+          @total_expenses += transaction.amount
+        else
+          # print "income #{@incomes}/ #{@incomes[plannedtransaction.category_id]}/ #{plannedtransaction.amount}"
+          @incomes[transaction.category_id] += transaction.amount
+          @total_incomes += transaction.amount
+        end
+      end
+    end
+    
     render :index
   end
 

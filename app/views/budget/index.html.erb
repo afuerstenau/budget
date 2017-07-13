@@ -24,19 +24,19 @@
 <td style="width:50%;vertical-align:top">
 	<table  style="width:100%">
 
-	<% @categories.each do |category_id| %>
+	<% @categories.each do |category| %>
 	  <tr>
-	    <td><%= Category.find(category_id).name %></td>
-    <td style="text-align: right;"><%= number_to_currency(@planned_incomes[category_id]) %></td>
-	<td style="text-align: right;"><%= number_to_currency(@planned_expenses[category_id]) %></td>
+	    <td><%= category.name %></td>
+    <td style="text-align: right;"><%= number_to_currency(@incomes[category.id]) %></td>
+	<td style="text-align: right;"><%= number_to_currency(@expenses[category.id]) %></td>
 	  </tr>
 	<% end %>
 	
 	<tr style="font-weight: bold;">
 		<hr>
 		<td>Gesamt:</td>
-		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_incomes) %></td>
-		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_expenses) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_incomes) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_expenses) %></td>
 	</tr>
 </table>
 </td>
