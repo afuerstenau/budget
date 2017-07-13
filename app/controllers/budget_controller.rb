@@ -68,6 +68,57 @@ class BudgetController < ApplicationController
     
     render :index
   end
+  
+  def show_by_category
+    @category = Category.find(params[:category_id])
+    @month = params[:id] unless params[:id].nil?
+    @monthname = date = Date.new(2017, Integer(@month), 01) 
+    
+    @plannedtransactions = Plannedtransaction.where(category_id: @category.id)
+    @planned_expenses = Hash.new
+    @planned_incomes = Hash.new
+   
+    @planned_expenses[@category.id] = 0
+    @planned_incomes[@category.id] = 0
+    @total_planned_expenses = 0
+    @total_planned_incomes = 0
+    @plannedtransactions_by_month = []
+    @plannedtransactions.each do |plannedtransaction|
+      if plannedtransaction.months.include? @month 
+        #print "expense? #{@categories[plannedtransaction.category_id].name}/ #{@categories[plannedtransaction.category_id].expense}\n"
+        #print "planned_transaction Name:#{plannedtransaction.name} Amount:#{plannedtransaction.amount} Category:#{plannedtransaction.category_id} \n"
+        @plannedtransactions_by_month << plannedtransaction
+        if @category.expense
+          @planned_expenses[plannedtransaction.category_id] += plannedtransaction.amount
+          @total_planned_expenses += plannedtransaction.amount
+        else
+          # print "income #{@incomes}/ #{@incomes[plannedtransaction.category_id]}/ #{plannedtransaction.amount}"
+          @planned_incomes[plannedtransaction.category_id] += plannedtransaction.amount
+          @total_planned_incomes += plannedtransaction.amount
+        end
+      end
+    end
+    
+    @expenses = Hash.new
+    @incomes = Hash.new
+    @expenses[@category.id] = 0
+    @incomes[@category.id] = 0
+    @total_expenses = 0
+    @total_incomes = 0
+    @transactions = Transaction.where("category_id = :category_id and value_date between :first_day_of_the_month and :last_day_of_the_month", {category_id: @category.id, first_day_of_the_month: @monthname.at_beginning_of_month, last_day_of_the_month: @monthname.at_end_of_month})
+    @transactions.each do |transaction|
+        
+        if @category.expense
+          @expenses[transaction.category_id] += transaction.amount
+          @total_expenses += transaction.amount
+        else
+          # print "income #{@incomes}/ #{@incomes[plannedtransaction.category_id]}/ #{plannedtransaction.amount}"
+          @incomes[transaction.category_id] += transaction.amount
+          @total_incomes += transaction.amount
+        end
+    end
+    render :by_category
+  end
 
   def show_complete
     @month = params[:id]

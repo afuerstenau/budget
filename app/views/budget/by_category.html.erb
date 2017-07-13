@@ -1,0 +1,44 @@
+<h1 style="text-align:center;">Budget für <%= l(@monthname, format: "%B") %> Kategorie:<%= @category.name %> </h1>
+	<table>
+		<tr><th>Geplant </th><th>Tatsächlich</th></tr>
+		<tr><td style="width:50%;vertical-align:top">
+			
+	<table style="width:100%">
+
+	<% @plannedtransactions_by_month.each do |planned_transaction| %>
+	  <tr>
+		  <td><%=planned_transaction.name%></td>
+	    <td style="text-align: right;"><%= number_to_currency(planned_transaction.amount) unless planned_transaction.amount < 0 %></td>
+		<td style="text-align: right;"><%= number_to_currency(planned_transaction.amount) unless planned_transaction.amount > 0 %></td>
+	  </tr>
+	<% end %>
+	
+	<tr style="font-weight: bold;">
+		<hr>
+		<td>Gesamt:</td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_incomes) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_planned_expenses) %></td>
+	</tr>
+</table>
+</td>
+<td style="width:50%;vertical-align:top">
+	<table  style="width:100%">
+
+	<% @transactions.each do |transaction| %>
+	  <tr>
+		 <td><%=transaction.name%></td>
+    <td style="text-align: right;"><%= number_to_currency(transaction.amount) unless transaction.amount < 0 %></td>
+	<td style="text-align: right;"><%= number_to_currency(transaction.amount) unless transaction.amount > 0 %></td>
+	  </tr>
+	<% end %>
+	
+	<tr style="font-weight: bold;">
+		<hr>
+		<td>Gesamt:</td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_incomes) %></td>
+		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_expenses) %></td>
+	</tr>
+</table>
+</td>
+</tr>
+</table>
