@@ -22,7 +22,6 @@
         <td><%= plannedtransaction.months %></td>
         <td><%= plannedtransaction.repeat_yearly %></td>
         <td><%= Category.find(plannedtransaction.category).name %></td>
-        <td><%= link_to 'Show', plannedtransaction %></td>
         <td><%= link_to 'Edit', edit_plannedtransaction_path(plannedtransaction) %></td>
         <td><%= link_to 'Destroy', plannedtransaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

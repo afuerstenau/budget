@@ -9,6 +9,10 @@
   </head>
 
   <body>
+	  <%= link_to 'Budget', budget_index_path %>
+	  <%= link_to 'Transactions', transactions_path %>
+	  <%= link_to 'Categories', categories_path %>
+	  <%= link_to 'Planned Transactions', plannedtransactions_path %>
     <%= yield %>
   </body>
   <%= button_to 'Logout', logout_path, method: :delete   %>

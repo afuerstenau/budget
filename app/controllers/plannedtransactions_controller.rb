@@ -29,7 +29,7 @@ class PlannedtransactionsController < ApplicationController
     respond_to do |format|
       if @plannedtransaction.save
         format.html { redirect_to @plannedtransaction, notice: 'Planned Transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @plannedtransaction }
+        format.json { redirect_to plannedtransactions_url, status: :created, location: @plannedtransaction }
       else
         format.html { render :new }
         format.json { render json: @plannedtransaction.errors, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class PlannedtransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @plannedtransaction.update(plannedtransaction_params)
-        format.html { redirect_to @plannedtransaction, notice: 'Planned Transaction was successfully updated.' }
+        format.html { redirect_to plannedtransactions_url, notice: 'Planned Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @plannedtransaction }
       else
         format.html { render :edit }
