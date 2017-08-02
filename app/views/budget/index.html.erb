@@ -1,4 +1,4 @@
-<h1 style="text-align:center;">Budget für <%= l(@monthname, format: "%B") %></h1>
+<h1 style="text-align:center;"><%= link_to '<', budget_show_by_month_path(@previous_month) %> Budget für <%= l(@monthname, format: "%B") %> <%= link_to '>', budget_show_by_month_path(@next_month) %></h1>
 	<table>
 		<tr><th>Geplant</th><th>Tatsächlich</th></tr>
 		<tr><td style="width:50%;vertical-align:top">

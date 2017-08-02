@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :plannedtransactions
   resources :categories
-  get '/budget/:id', to: 'budget#show'
+  get '/budget/:id', to: 'budget#show', as: 'budget_show_by_month'
   get '/budget/show_complete/:id', to: 'budget#show_complete'
   get '/budget/:id/:category_id', to: 'budget#show_by_category', as: 'budget_show_by_category'
   

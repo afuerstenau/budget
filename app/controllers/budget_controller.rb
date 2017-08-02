@@ -1,6 +1,8 @@
 class BudgetController < ApplicationController
   @sums
   @month
+  @previous_month
+  @next_month
   
   def index
    @month = Date.today.month.to_s
@@ -8,9 +10,12 @@ class BudgetController < ApplicationController
   end
   
   def show
-    @month = params[:id] unless params[:id].nil?
+    Integer @month = params[:id] unless params[:id].nil?
     @monthname = date = Date.new(2017, Integer(@month), 01) 
-    
+    @previous_month = Integer(@month)-1
+    @previous_month = 12 if @previous_month == 0
+    @next_month = Integer(@month)+1
+    @next_month = 1 if @next_month == 13
     @plannedtransactions = Plannedtransaction.all
     @categories = Category.all
     print "categories: #{@categories}"
