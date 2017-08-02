@@ -7,6 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Amount</th>
+	  <th>Date</th>
       <th>Months</th>
       <th>Repeat yearly</th>
       <th>Category</th>
@@ -19,6 +20,7 @@
       <tr>
         <td><%= plannedtransaction.name %></td>
         <td><%= plannedtransaction.amount %></td>
+		<td><%= plannedtransaction.date %></td>
         <td><%= plannedtransaction.months %></td>
         <td><%= plannedtransaction.repeat_yearly %></td>
         <td><%= Category.find(plannedtransaction.category).name %></td>

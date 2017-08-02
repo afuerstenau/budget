@@ -69,6 +69,6 @@ class PlannedtransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plannedtransaction_params
-      params.require(:plannedtransaction).permit(:name, :amount, :months, :repeat_yearly, :category_id)
+      params.require(:plannedtransaction).permit(:name, :amount, :months, :repeat_yearly, :category_id, :date)
     end
 end
