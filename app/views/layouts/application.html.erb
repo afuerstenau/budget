@@ -14,9 +14,6 @@
 	  <%= link_to 'Categories', categories_path %>
 	  <%= link_to 'Planned Transactions', plannedtransactions_path %>
     <%= yield %>
-    <script type="text/javascript">
-      $(".ex1").find("#simpleCheckAll").select_all();
-    </script>
   </body>
   <%= button_to 'Logout', logout_path, method: :delete   %>
 </html>

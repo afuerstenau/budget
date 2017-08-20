@@ -48,17 +48,17 @@
 		  <tbody>
     		  <td><input type="checkbox" id="simpleCheckAll" >All Items</input></td>
 			  <td><%= f.check_box :january, class: :selectable %></td>
-    		  <td><%= f.check_box :february %></td>
-			  <td><%= f.check_box :march %></td>
-			  <td><%= f.check_box :april %></td>
-			  <td><%= f.check_box :may %></td>
-			  <td><%= f.check_box :june %></td>
-			  <td><%= f.check_box :july %></td>
-			  <td><%= f.check_box :august %></td>
-			  <td><%= f.check_box :september %></td>
-			  <td><%= f.check_box :october %></td>
-			  <td><%= f.check_box :november %></td>
-			  <td><%= f.check_box :december %></td>
+    		  <td><%= f.check_box :february, class: :selectable %></td>
+			  <td><%= f.check_box :march, class: :selectable %></td>
+			  <td><%= f.check_box :april, class: :selectable %></td>
+			  <td><%= f.check_box :may, class: :selectable %></td>
+			  <td><%= f.check_box :june, class: :selectable %></td>
+			  <td><%= f.check_box :july, class: :selectable %></td>
+			  <td><%= f.check_box :august, class: :selectable %></td>
+			  <td><%= f.check_box :september, class: :selectable %></td>
+			  <td><%= f.check_box :october, class: :selectable %></td>
+			  <td><%= f.check_box :november, class: :selectable %></td>
+			  <td><%= f.check_box :december, class: :selectable %></td>
 		  </tbody>
 	  </table>
   </div>
@@ -83,3 +83,6 @@
     <%= f.submit %>
   </div>
 <% end %>
+    <script type="text/javascript">
+      $(".ex1").find("#simpleCheckAll").select_all();
+    </script>

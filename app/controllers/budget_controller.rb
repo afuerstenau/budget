@@ -18,7 +18,6 @@ class BudgetController < ApplicationController
     @next_month = 1 if @next_month == 13
     @plannedtransactions = Plannedtransaction.all
     @categories = Category.all
-    print "categories: #{@categories}"
     @planned_expenses = Hash.new
     @planned_incomes = Hash.new
     @categories.each do |category|
@@ -28,11 +27,10 @@ class BudgetController < ApplicationController
     @total_planned_expenses = 0
     @total_planned_incomes = 0
     @plannedtransactions.each do |plannedtransaction|
-      if plannedtransaction.months.include? @month 
-        #print "expense? #{@categories[plannedtransaction.category_id].name}/ #{@categories[plannedtransaction.category_id].expense}\n"
-        #print "planned_transaction Name:#{plannedtransaction.name} Amount:#{plannedtransaction.amount} Category:#{plannedtransaction.category_id} \n"
+      var_name = Date::MONTHNAMES[@monthname.mon].downcase
+      if plannedtransaction.attributes[var_name]
         selected_category = @categories.find(plannedtransaction.category_id)
-        print "category ID:#{selected_category.id} Name:#{selected_category.name} Expense:#{selected_category.expense}\n"
+        #print "category ID:#{selected_category.id} Name:#{selected_category.name} Expense:#{selected_category.expense}\n"
         if selected_category.expense
           @planned_expenses[plannedtransaction.category_id] += plannedtransaction.amount
           @total_planned_expenses += plannedtransaction.amount
@@ -59,7 +57,7 @@ class BudgetController < ApplicationController
         #print "planned_transaction Name:#{plannedtransaction.name} Amount:#{plannedtransaction.amount} Category:#{plannedtransaction.category_id} \n"
         if (transaction.category_id != nil)
         selected_category = @categories.find(transaction.category_id)
-        print "category ID:#{selected_category.id} Name:#{selected_category.name} Expense:#{selected_category.expense}\n"
+        #print "category ID:#{selected_category.id} Name:#{selected_category.name} Expense:#{selected_category.expense}\n"
         if selected_category.expense
           @expenses[transaction.category_id] += transaction.amount
           @total_expenses += transaction.amount
@@ -89,7 +87,8 @@ class BudgetController < ApplicationController
     @total_planned_incomes = 0
     @plannedtransactions_by_month = []
     @plannedtransactions.each do |plannedtransaction|
-      if plannedtransaction.months.include? @month 
+      var_name = Date::MONTHNAMES[@monthname.mon].downcase
+      if plannedtransaction.attributes[var_name]
         #print "expense? #{@categories[plannedtransaction.category_id].name}/ #{@categories[plannedtransaction.category_id].expense}\n"
         #print "planned_transaction Name:#{plannedtransaction.name} Amount:#{plannedtransaction.amount} Category:#{plannedtransaction.category_id} \n"
         @plannedtransactions_by_month << plannedtransaction
@@ -133,17 +132,18 @@ class BudgetController < ApplicationController
     @categories = Category.all
     @expenses = Hash.new
     @incomes = Hash.new
-    print("category id expenses: #{@expenses}")
-    print("category id incomes: #{@incomes}")
+    #print("category id expenses: #{@expenses}")
+    #print("category id incomes: #{@incomes}")
     @total_expenses = 0
     @total_incomes = 0
     @plannedtransactions.each do |plannedtransaction|
-      if plannedtransaction.months.include? @month 
+      var_name = Date::MONTHNAMES[@monthname.mon].downcase
+      if plannedtransaction.attributes[var_name]
         if plannedtransaction.amount < 0
           @expenses[plannedtransaction.name] = plannedtransaction.amount
           @total_expenses += plannedtransaction.amount
         else
-          print("category id: #{plannedtransaction.category_id} , amount: #{plannedtransaction.amount}")
+          #print("category id: #{plannedtransaction.category_id} , amount: #{plannedtransaction.amount}")
           @incomes[plannedtransaction.name] = plannedtransaction.amount
           @total_incomes += plannedtransaction.amount
         end
