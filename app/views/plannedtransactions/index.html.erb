@@ -8,7 +8,18 @@
       <th>Name</th>
       <th>Amount</th>
 	  <th>Date</th>
-      <th>Months</th>
+      <th>Jan</th>
+	  <th>Feb</th>
+	  <th>Mar</th>
+	  <th>Apr</th>
+	  <th>May</th>
+	  <th>Jun</th>
+	  <th>Jul</th>
+	  <th>Aug</th>
+	  <th>Sep</th>
+	  <th>Oct</th>
+	  <th>Nov</th>
+	  <th>Dec</th>
       <th>Repeat yearly</th>
       <th>Category</th>
       <th colspan="3"></th>
@@ -21,9 +32,20 @@
         <td><%= plannedtransaction.name %></td>
         <td><%= plannedtransaction.amount %></td>
 		<td><%= plannedtransaction.date %></td>
-        <td><%= plannedtransaction.months %></td>
+        <td><%= check_box(plannedtransaction.january, plannedtransaction.january,  {checked:plannedtransaction.january, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.february, plannedtransaction.february,  {checked:plannedtransaction.february, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.march, plannedtransaction.march,  {checked:plannedtransaction.march, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.april, plannedtransaction.april,  {checked:plannedtransaction.april, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.may, plannedtransaction.may,  {checked:plannedtransaction.may, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.june, plannedtransaction.june,  {checked:plannedtransaction.june, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.july, plannedtransaction.july,  {checked:plannedtransaction.july, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.august, plannedtransaction.august,  {checked:plannedtransaction.august, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.september, plannedtransaction.september,  {checked:plannedtransaction.september, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.october, plannedtransaction.october,  {checked:plannedtransaction.october, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.november, plannedtransaction.november,  {checked:plannedtransaction.november, disabled: true}) %></td>
+		<td><%= check_box(plannedtransaction.december, plannedtransaction.december,  {checked:plannedtransaction.december, disabled: true}) %></td>
         <td><%= plannedtransaction.repeat_yearly %></td>
-        <td><%= Category.find(plannedtransaction.category).name %></td>
+        <td><%= Category.find(plannedtransaction.category.id).name %></td>
         <td><%= link_to 'Edit', edit_plannedtransaction_path(plannedtransaction) %></td>
         <td><%= link_to 'Destroy', plannedtransaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -1,4 +1,4 @@
-<%= form_for(plannedtransaction) do |f| %>
+<%= form_with(model: plannedtransaction, local: true) do |f| %>
   <% if plannedtransaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(plannedtransaction.errors.count, "error") %> prohibited this plannedtransaction from being saved:</h2>
@@ -25,7 +25,45 @@
     <%= f.label :months %>
     <%= f.text_field :months %>
   </div>
-
+   <section class="ex1" id="basic_usage">
+  <div class="field">
+	  <table>
+		  <thead>
+    		  <tr>
+    			  <th>select all</th>
+				  <th><%= f.label :january %></th>
+				  <th><%= f.label :february %></th>
+				  <th><%= f.label :march %></th>
+				  <th><%= f.label :april %></th>
+				  <th><%= f.label :may %></th>
+				  <th><%= f.label :june %></th>
+				  <th><%= f.label :july %></th>
+				  <th><%= f.label :august %></th>
+				  <th><%= f.label :september %></th>
+				  <th><%= f.label :october %></th>
+				  <th><%= f.label :november %></th>
+				  <th><%= f.label :december %></th>
+			  </tr>
+		  </thead>
+		  <tbody>
+    		  <td><input type="checkbox" id="simpleCheckAll" >All Items</input></td>
+			  <td><%= f.check_box :january, class: :selectable %></td>
+    		  <td><%= f.check_box :february %></td>
+			  <td><%= f.check_box :march %></td>
+			  <td><%= f.check_box :april %></td>
+			  <td><%= f.check_box :may %></td>
+			  <td><%= f.check_box :june %></td>
+			  <td><%= f.check_box :july %></td>
+			  <td><%= f.check_box :august %></td>
+			  <td><%= f.check_box :september %></td>
+			  <td><%= f.check_box :october %></td>
+			  <td><%= f.check_box :november %></td>
+			  <td><%= f.check_box :december %></td>
+		  </tbody>
+	  </table>
+  </div>
+   </section>
+	
   <div class="field">
     <%= f.label :repeat_yearly %>
     <%= f.check_box :repeat_yearly %>

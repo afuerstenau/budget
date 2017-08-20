@@ -40,6 +40,7 @@ class PlannedtransactionsController < ApplicationController
   # PATCH/PUT /plannedtransactions/1
   # PATCH/PUT /plannedtransactions/1.json
   def update
+    puts "update called"
     respond_to do |format|
       if @plannedtransaction.update(plannedtransaction_params)
         format.html { redirect_to plannedtransactions_url, notice: 'Planned Transaction was successfully updated.' }
@@ -69,6 +70,6 @@ class PlannedtransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plannedtransaction_params
-      params.require(:plannedtransaction).permit(:name, :amount, :months, :repeat_yearly, :category_id, :date)
+      params.require(:plannedtransaction).permit(:name, :amount, :months, :repeat_yearly, :category_id, :date, :january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december)
     end
 end
