@@ -10,62 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802124103) do
+ActiveRecord::Schema.define(version: 20170820135230) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "expense"
-    t.boolean  "income"
-    t.string   "description"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "expense"
+    t.boolean "income"
+    t.string "description"
   end
 
   create_table "plannedtransactions", force: :cascade do |t|
-    t.string   "name"
-    t.decimal  "amount",        precision: 8, scale: 2
-    t.string   "months"
-    t.boolean  "repeat_yearly"
-    t.integer  "category_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.date     "date"
-    t.boolean  "january"
-    t.boolean  "february"
-    t.boolean  "march"
-    t.boolean  "april"
-    t.boolean  "may"
-    t.boolean  "june"
-    t.boolean  "july"
-    t.boolean  "august"
-    t.boolean  "september"
-    t.boolean  "october"
-    t.boolean  "november"
-    t.boolean  "december"
+    t.string "name"
+    t.decimal "amount", precision: 8, scale: 2
+    t.boolean "repeat_yearly"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date"
+    t.boolean "january"
+    t.boolean "february"
+    t.boolean "march"
+    t.boolean "april"
+    t.boolean "may"
+    t.boolean "june"
+    t.boolean "july"
+    t.boolean "august"
+    t.boolean "september"
+    t.boolean "october"
+    t.boolean "november"
+    t.boolean "december"
     t.index ["category_id"], name: "index_plannedtransactions_on_category_id"
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer  "moneymoney_id"
-    t.date     "occurance_date"
-    t.date     "value_date"
-    t.integer  "category_id"
-    t.string   "name"
-    t.string   "purpose"
-    t.string   "account"
-    t.string   "bank"
-    t.decimal  "amount"
-    t.string   "currency"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer "moneymoney_id"
+    t.date "occurance_date"
+    t.date "value_date"
+    t.integer "category_id"
+    t.string "name"
+    t.string "purpose"
+    t.string "account"
+    t.string "bank"
+    t.decimal "amount"
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "name"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
