@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20170820135230) do
 
-  create_table "categories", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "categories", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170820135230) do
     t.string "description"
   end
 
-  create_table "plannedtransactions", force: :cascade do |t|
+  create_table "plannedtransactions", id: :serial, force: :cascade do |t|
     t.string "name"
     t.decimal "amount", precision: 8, scale: 2
     t.boolean "repeat_yearly"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170820135230) do
     t.index ["category_id"], name: "index_plannedtransactions_on_category_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "transactions", id: :serial, force: :cascade do |t|
     t.integer "moneymoney_id"
     t.date "occurance_date"
     t.date "value_date"
@@ -60,11 +63,12 @@ ActiveRecord::Schema.define(version: 20170820135230) do
     t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "plannedtransactions", "categories"
 end

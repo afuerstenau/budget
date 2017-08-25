@@ -26,7 +26,6 @@
 
 	<% @categories.each do |category| %>
 	  <tr>
-	    <td><%= category.name %></td>
     <td style="text-align: right;"><%= number_to_currency(@incomes[category.id]) %></td>
 	<td style="text-align: right;"><%= number_to_currency(@expenses[category.id]) %></td>
 	  </tr>
@@ -34,7 +33,6 @@
 	
 	<tr style="font-weight: bold;">
 		<hr>
-		<td>Gesamt:</td>
 		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_incomes) %></td>
 		<td style="font-weight: bold;text-align: right;"><%= number_to_currency(@total_expenses) %></td>
 	</tr>
