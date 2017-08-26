@@ -28,7 +28,7 @@ class PlannedtransactionsController < ApplicationController
 
     respond_to do |format|
       if @plannedtransaction.save
-        format.html { redirect_to @plannedtransaction, notice: 'Planned Transaction was successfully created.' }
+        format.html { redirect_to plannedtransactions_url, notice: 'Planned Transaction was successfully created.' }
         format.json { redirect_to plannedtransactions_url, status: :created, location: @plannedtransaction }
       else
         format.html { render :new }
